@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { fetchData } from './utils';
 import { Beer } from '../../types';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link, Typography, CardActions, CardContent, Card, CardMedia, Box, Container, Grid } from '@mui/material';
+import { Link, Typography, Box, Container, Grid } from '@mui/material';
+import CardGalaxy from '../../components/cards/card-galaxy';
 
 const Home = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
-  const [savedList, setSavedList] = useState<Array<Beer>>([]);
 
   // eslint-disable-next-line
   useEffect(fetchData.bind(this, setBeerList), []);
@@ -38,27 +38,9 @@ const Home = () => {
               <Grid container spacing={2}>
                 {beerList.map((beer, index) => (
                   <Grid item key={index.toString()} xs={12} sm={6} md={4}>
-                    <Card
-                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                    >
-                      <CardMedia
-                        component="div"
-                        sx={{
-                          pt: '56.25%',
-                        }}
-                        image="https://source.unsplash.com/random?wallpapers"
-                      />
-                        <CardContent sx={{ flexGrow: 1 }}>
-                          <Typography gutterBottom variant="h6" component="h6">
-                            {beer.name}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Link component={RouterLink} to={`/beer/${beer.id}`}>
-                      Read More
+                    <Link component={RouterLink} to={`/beer/${beer.id}`}>
+                      <CardGalaxy title={beer.name} type={beer.brewery_type}></CardGalaxy>
                     </Link>
-                        </CardActions>
-                    </Card>
                   </Grid>
                 ))}
               </Grid>

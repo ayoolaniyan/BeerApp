@@ -1,43 +1,61 @@
-import { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Beer } from '../../types';
+import { useEffect, useState } from 'react';
 import { fetchData } from './utils';
-import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
-const BeerList = () => {
-  const navigate = useNavigate();
+interface TableData {
+  id: string;
+  name: string;
+  brewery_type: string;
+};
+
+const columns: GridColDef[] = [
+  {
+    field: 'id',
+    headerName: 'Id',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'name',
+    headerName: 'Name',
+    width: 150,
+    editable: true,
+  },
+  {
+    field: 'brewery_type',
+    headerName: 'Brewery Type',
+    width: 110,
+    editable: true,
+  },
+];
+
+function getRows(beer: Beer[]): TableData[] {
+  const rows: TableData[] = [];
+    for (const item of beer) {
+      const row: TableData = {
+        id: item.name,
+        name: item.name,
+        brewery_type: item.brewery_type,
+      };
+      rows.push(row);
+    }
+    return rows;
+}
+
+const DataGridDemo = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
 
   // eslint-disable-next-line
   useEffect(fetchData.bind(this, setBeerList), []);
 
-  const onBeerClick = (id: string) => navigate(`/beer/${id}`);
-
+  console.log('data: ', beerList.map(item => item.address_1));
+  
   return (
-    <article>
-      <section>
-        <header>
-          <h1>BeerList page</h1>
-        </header>
-        <main>
-          <nav aria-label="main mailbox folders">
-            <List>
-            {beerList.map((beer) => (
-              <ListItem key={beer.id} disablePadding onClick={onBeerClick.bind(this, beer.id)}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <img src="https://source.unsplash.com/random?wallpapers" />
-                    </ListItemIcon>
-                    <ListItemText>{beer.brewery_type}</ListItemText>
-                  </ListItemButton>
-                </ListItem>
-                ))}
-              </List>
-          </nav>
-        </main>
-      </section>
-    </article>
+    <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid rows={getRows(beerList)} columns={columns} />
+    </Box>
   );
-};
-
-export default BeerList;
+}
+export default DataGridDemo;

@@ -9,12 +9,17 @@ import {
   InfoSubtitle,
   InfoTitle,
 } from "../info-basic";
-import { CardTag } from "../card-tag";
+
+interface Props {
+  type?: string;
+  title?: string;
+  icon?: JSX.Element;
+}
 
 const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
   return {
     eyebrow: {
-      color: "rgba(255, 255, 255, 0.92)",
+      color: "rgba(0, 0, 0, 0.92)",
       fontFamily: '"Spartan", san-serif',
       lineHeight: 1.4,
       fontSize: "1.0625rem",
@@ -23,13 +28,13 @@ const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
       marginBottom: 0,
     },
     title: {
-      color: "#fff",
+      color: "#000",
       fontSize: "1.25rem",
       fontWeight: "bold" as const,
       lineHeight: 1.2,
     },
     subtitle: {
-      color: "rgba(255, 255, 255, 0.72)",
+      color: "rgba(0, 0, 0, 0.72)",
       lineHeight: 1.5,
       "&:last-child": {
         marginTop: "1rem",
@@ -39,8 +44,8 @@ const useStyles = (): CSSObject & Partial<InfoSlotStyles> => {
 };
 
 const StyledCard = styled(Card)({
-  borderRadius: "1rem",
-  boxShadow: "none",
+  borderRadius: ".5rem",
+  boxShadow: "rgba(0,0,0,1)",
   position: "relative",
   minWidth: 200,
   minHeight: 360,
@@ -49,10 +54,10 @@ const StyledCard = styled(Card)({
     display: "block",
     position: "absolute",
     width: "100%",
-    height: "64%",
+    height: "25%",
     bottom: 0,
     zIndex: 1,
-    // background: "linear-gradient(to top, #000, rgba(0,0,0,0))",
+    background: "linear-gradient(to top, #f2f2f2, rgba(255,255,255,.5))",
   },
 });
 
@@ -74,27 +79,21 @@ const Content = styled("div")(({ theme }) => ({
   width: "100%",
 }));
 
-const InnerContent = styled("div")(({ theme }) => ({
-  padding: theme.spacing(3, 40),
-  position: "absolute",
-  zIndex: 2,
-  bottom: 0,
-  width: "100%",
-}));
-
-export function CardGalaxy() {
+const CardGalaxy = (props: Props) => {
   return (
     <StyledCard>
-      <InnerContent>
-        <CardTag></CardTag>
-      </InnerContent>
+      <StyledCardMedia
+        image={
+          "/assets/beer-02.jpeg"}
+      />
       <Content>
         <Info useStyles={useStyles}>
-          <InfoEyebrow>Galaxy</InfoEyebrow>
-          <InfoTitle>Buds 2019</InfoTitle>
-          <InfoSubtitle>Perfect for everyone</InfoSubtitle>
+          <InfoEyebrow>{props.type}</InfoEyebrow>
+          <InfoTitle>{props.title}</InfoTitle>
+          <InfoSubtitle>{props.icon}</InfoSubtitle>
         </Info>
       </Content>
     </StyledCard>
   );
 }
+export default CardGalaxy;

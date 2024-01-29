@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import LiquorIcon from '@mui/icons-material/Liquor';
 
 const StyledCard = styled(Card)(({ theme: { palette } }) => ({
   width: "180px",
@@ -39,8 +40,9 @@ export function CardTag() {
   return (
     <StyledCard elevation={0}>
       <CardContent>
-        <TripOriginHole />
-        <RestaurantMenuRounded sx={{ fontSize: 83, width: "100%" }} />
+        {/* <TripOriginHole /> */}
+        {/* <RestaurantMenuRounded sx={{ fontSize: 83, width: "100%" }} /> */}
+        <LiquorIcon sx={{ fontSize: 83, width: "100%" }} />
         <Typography align="center" gutterBottom>
           BreakFast
         </Typography>
