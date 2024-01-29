@@ -53,7 +53,7 @@ const DataGridDemo = () => {
   console.log('data: ', beerList.map(item => item.address_1));
   
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
+    <Box sx={{ height: 750, width: '100%' }}>
       <DataGrid rows={getRows(beerList)} columns={columns} />
     </Box>
   );
