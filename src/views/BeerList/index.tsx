@@ -14,6 +14,17 @@ const BeerList = () => {
 
   const onBeerClick = (id: string) => navigate(`/beer/${id}`);
 
+  const [orderDirection, setOrderDirection] = useState<Order>();
+    const [valueToOrderBy, setValueToOrderBy] = useState('name');
+
+    const handleRequestSort = (event: any, property: any) => {
+        const isAscending = (valueToOrderBy === property && orderDirection === 'asc')
+        setValueToOrderBy(property)
+        setOrderDirection(isAscending ? 'desc' : 'asc')
+    }
+    
+    type Order = 'asc' | 'desc' | undefined;
+
   return (
     <article>
       <section>
@@ -22,7 +33,12 @@ const BeerList = () => {
         </header>
         <main>
           <Grid>
-            <TableContent></TableContent>
+            <TableContent 
+            valueToOrderBy={valueToOrderBy} 
+            orderDirection={orderDirection} 
+            handleRequestSort={handleRequestSort} 
+            arrayList={beerList} 
+            ></TableContent>
           </Grid>
         </main>
       </section>

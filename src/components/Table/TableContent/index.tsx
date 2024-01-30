@@ -1,23 +1,18 @@
-import { Table, TableCell, TableContainer, TableRow } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Grid, Table, TableCell, TableContainer, TableFooter, TablePagination, TableRow } from "@mui/material";
+import { useState } from "react";
 import TableHeader from "../TableHeader";
-import { Beer } from "../../../types";
-import { fetchData } from "../../../views/Home/utils";
 
-const TableContent = () => {
-    const [beerList, setBeerList] = useState<Array<Beer>>([]);
+interface Props {
+    valueToOrderBy: any;
+    orderDirection: any;
+    handleRequestSort: any;
+    arrayList: any;
+  }
 
-    // eslint-disable-next-line
-    useEffect(fetchData.bind(this, setBeerList), []);
-
-    const [orderDirection, setOrderDirection] = useState<Order>();
-    const [valueToOrderBy, setValueToOrderBy] = useState('name');
-
-    const handleRequestSort = (event: any, property: any) => {
-        const isAscending = (valueToOrderBy === property && orderDirection === 'asc')
-        setValueToOrderBy(property)
-        setOrderDirection(isAscending ? 'desc' : 'asc')
-    }
+const TableContent = (props: Props) => {
+    const [rowsPerpage, setRowsPerPage] = useState(10);
+    const [page, setPage] = useState(1);
+    type Order = 'asc' | 'desc' | undefined;
 
     function sortedRowinformation<Beer>(beerList: Beer[], comparator: (a: Beer, b: Beer) => number) {
       const stabilizedThis = beerList.map((beer, index) => [beer, index] as [Beer, number]);
@@ -42,8 +37,6 @@ const TableContent = () => {
       return 0;
     }
     
-    type Order = 'asc' | 'desc' | undefined;
-    
     function getComparator<Key extends keyof any>(
       order: Order,
       orderBy: Key,
@@ -55,17 +48,32 @@ const TableContent = () => {
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);
     }
+    
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+      ) => {
+        setPage(newPage);
+      };
+    
+      const handleChangeRowsPerPage = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      ) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+      };
 
     return (
+        <Grid>
         <TableContainer>
             <Table>
                 <TableHeader 
-                valueToOrderBy={valueToOrderBy} 
-                orderDirection={orderDirection}
-                handleRequestSort={handleRequestSort}
+                valueToOrderBy={props.valueToOrderBy} 
+                orderDirection={props.orderDirection}
+                handleRequestSort={props.handleRequestSort}
                 />
                 {
-                    sortedRowinformation(beerList, getComparator(orderDirection, valueToOrderBy))
+                    sortedRowinformation(props.arrayList, getComparator(props.orderDirection, props.valueToOrderBy))
                     .map((beer, index) => (
                         <TableRow key={index.toString()}>
                             <TableCell>
@@ -79,7 +87,18 @@ const TableContent = () => {
                 }
             </Table>
         </TableContainer>
-
+        <TableFooter>
+            <TablePagination
+            rowsPerPageOptions={[1, 2, 3, 4]}
+            component="div"
+            count={props.arrayList.length}
+            rowsPerPage={rowsPerpage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+        </TableFooter>
+        </Grid>
     );
 }
 
