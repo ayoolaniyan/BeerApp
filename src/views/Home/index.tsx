@@ -11,17 +11,20 @@ const Home = () => {
   // eslint-disable-next-line
   useEffect(fetchData.bind(this, setBeerList), []);
 
+  function getRows(beer: Beer[]): Beer[] {
+    const rows: Beer[] = [];
+      for (const item of beer) {
+        if (item.brewery_type === "brewpub") {
+          rows.push(item);
+        }
+      }
+      return rows;
+  }
+
   return (
     <article>
       <section>
         <main>
-          <Box
-              sx={{
-                bgcolor: 'background.paper',
-                pt: 8,
-                pb: 6,
-              }}
-            >
               <Container maxWidth="sm">
                 <Typography
                   component="h1"
@@ -33,10 +36,9 @@ const Home = () => {
                   Favourite Beers
                 </Typography>
               </Container>
-            </Box>
             <Container sx={{ py: 8 }} maxWidth="md">
               <Grid container spacing={2}>
-                {beerList.map((beer, index) => (
+                {getRows(beerList).map((beer, index) => (
                   <Grid item key={index.toString()} xs={12} sm={6} md={4}>
                     <Link component={RouterLink} to={`/beer/${beer.id}`}>
                       <Card1 title={beer.name} type={beer.brewery_type}></Card1>
