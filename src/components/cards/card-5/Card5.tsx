@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Info, InfoEyebrow, InfoSubtitle, InfoTitle } from "../info-basic";
+import { Info, InfoSubtitle, InfoTitle } from "../card-7";
 import { Avatar, Typography } from "@mui/material";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
   city?: string;
 }
 
-export function CardProject(props: Props) {
+export function Card5(props: Props) {
   return (
     <Card
       sx={{
@@ -63,9 +63,9 @@ export function CardProject(props: Props) {
           component="hr"
           sx={(theme) => ({
             backgroundColor: "grey.200",
-            marginBottom: `${24 - 1}px`, // minus 1 due to divider height
+            marginBottom: `${24 - 1}px`,
             [theme.breakpoints.up("sm")]: {
-              marginBottom: `${30 - 1}px`, // minus 1 due to divider height
+              marginBottom: `${30 - 1}px`,
             },
           })}
         />

@@ -3,8 +3,8 @@ import { Beer as IBeer } from '../../types';
 import { fetchData } from './utils';
 import { useParams } from 'react-router-dom';
 import { Box, Container, Grid } from '@mui/material';
-import { CardNews2 } from '../../components/cards/card-news2';
-import { CardPost } from '../../components/cards/card-post';
+import { Card3 } from '../../components/cards/card-3';
+import { Card4 } from '../../components/cards/card-4';
 
 const Beer = () => {
   const { id } = useParams();
@@ -29,14 +29,14 @@ const Beer = () => {
               <Grid item xs={6}>
                 <Container maxWidth="sm">
                   <Box sx={{ height: '50vh' }}>
-                    <CardNews2></CardNews2>
+                    <Card3></Card3>
                   </Box>
                 </Container>
               </Grid>
               <Grid item xs={6}>
                 <Container maxWidth="sm">
                   <Box sx={{ height: '50vh' }}>
-                  <CardPost title={beer?.name} type={beer?.brewery_type}></CardPost>
+                  <Card4 title={beer?.name} type={beer?.brewery_type}></Card4>
                   </Box>
                 </Container>
               </Grid>

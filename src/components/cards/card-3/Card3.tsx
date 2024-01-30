@@ -4,7 +4,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
-export function CardNews2() {
+export function Card3() {
   return (
     <Card
       sx={{

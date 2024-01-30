@@ -8,7 +8,7 @@ import {
   InfoSlotStyles,
   InfoSubtitle,
   InfoTitle,
-} from "../info-basic";
+} from "../card-7";
 
 interface Props {
   type?: string;
@@ -79,7 +79,7 @@ const Content = styled("div")(({ theme }) => ({
   width: "100%",
 }));
 
-const CardGalaxy = (props: Props) => {
+const Card8 = (props: Props) => {
   return (
     <StyledCard>
       <StyledCardMedia
@@ -96,4 +96,4 @@ const CardGalaxy = (props: Props) => {
     </StyledCard>
   );
 }
-export default CardGalaxy;
+export default Card8;

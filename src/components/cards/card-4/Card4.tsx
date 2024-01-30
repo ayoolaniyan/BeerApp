@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
-import { Info, InfoSubtitle, InfoTitle } from "../info-basic";
+import { Info, InfoSubtitle, InfoTitle } from "../card-7";
 
 interface Props {
   type?: string;
@@ -13,7 +13,7 @@ interface Props {
   icon?: JSX.Element;
 }
 
-export function CardPost(props: Props) {
+export function Card4(props: Props) {
   return (
     <Card
       sx={{
