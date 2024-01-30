@@ -12,8 +12,6 @@ const TableContent = () => {
 
     const [orderDirection, setOrderDirection] = useState<Order>();
     const [valueToOrderBy, setValueToOrderBy] = useState('name');
-    const [page, setpage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(1);
 
     const handleRequestSort = (event: any, property: any) => {
         const isAscending = (valueToOrderBy === property && orderDirection === 'asc')

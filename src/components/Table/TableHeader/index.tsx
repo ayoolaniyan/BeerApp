@@ -4,6 +4,8 @@ interface Props {
     valueToOrderBy?: any;
     orderDirection?: any;
     handleRequestSort?: any;
+    name?: string;
+    type?: string;
 }
 
 const TableHeader = (props: Props) => {
@@ -28,11 +30,11 @@ const TableHeader = (props: Props) => {
 
                 <TableCell key="age">
                     <TableSortLabel 
-                    active={props.valueToOrderBy === "age"} 
-                    direction={props.valueToOrderBy === "age" ? props.orderDirection : 'asc'}
+                    active={props.valueToOrderBy === "type"} 
+                    direction={props.valueToOrderBy === "type" ? props.orderDirection : 'asc'}
                     onClick={createSortHandler("age")}
                     >
-                        Age
+                        Type
                     </TableSortLabel>
                 </TableCell>
 
