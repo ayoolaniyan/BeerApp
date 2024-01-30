@@ -10,7 +10,7 @@ interface Props {
   }
 
 const TableContent = (props: Props) => {
-    const [rowsPerpage, setRowsPerPage] = useState(10);
+    const [rowsPerpage, setRowsPerPage] = useState(5);
     const [page, setPage] = useState(1);
     type Order = 'asc' | 'desc' | undefined;
 
@@ -68,9 +68,9 @@ const TableContent = (props: Props) => {
         <TableContainer>
             <Table>
                 <TableHeader 
-                valueToOrderBy={props.valueToOrderBy} 
-                orderDirection={props.orderDirection}
-                handleRequestSort={props.handleRequestSort}
+                    valueToOrderBy={props.valueToOrderBy} 
+                    orderDirection={props.orderDirection}
+                    handleRequestSort={props.handleRequestSort}
                 />
                 {
                     sortedRowinformation(props.arrayList, getComparator(props.orderDirection, props.valueToOrderBy))
@@ -89,7 +89,8 @@ const TableContent = (props: Props) => {
         </TableContainer>
         <TableFooter>
             <TablePagination
-            rowsPerPageOptions={[1, 2, 3, 4]}
+            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+            colSpan={3}
             component="div"
             count={props.arrayList.length}
             rowsPerPage={rowsPerpage}
