@@ -44,7 +44,7 @@ function getRows(beer: Beer[]): TableData[] {
     return rows;
 }
 
-const DataGridDemo = () => {
+const BeerList = () => {
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
 
   // eslint-disable-next-line
@@ -58,4 +58,4 @@ const DataGridDemo = () => {
     </Box>
   );
 }
-export default DataGridDemo;
+export default BeerList;
