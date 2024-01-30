@@ -1,4 +1,4 @@
-import { Grid, Table, TableCell, TableContainer, TableFooter, TablePagination, TableRow } from "@mui/material";
+import { Grid, Table, TableCell, TableContainer, TablePagination, TableRow } from "@mui/material";
 import { useState } from "react";
 import TableHeader from "../TableHeader";
 

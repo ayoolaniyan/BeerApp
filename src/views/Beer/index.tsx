@@ -17,32 +17,24 @@ const Beer = () => {
     <article>
       <section>
         <main>
-          <Box
-            sx={{
-              bgcolor: 'rgba(255, 255, 255, 1)',
-              pt: 8,
-              pb: 6,
-            }}
-          >
           <Container sx={{ py: 8, pt: 8 }} maxWidth="lg">
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <Container maxWidth="sm">
-                  <Box sx={{ height: '50vh' }}>
+                  <Box sx={{ height: '70vh' }}>
                     <Card3></Card3>
                   </Box>
                 </Container>
               </Grid>
               <Grid item xs={6}>
                 <Container maxWidth="sm">
-                  <Box sx={{ height: '50vh' }}>
+                  <Box sx={{ height: '70vh' }}>
                   <Card4 title={beer?.name} type={beer?.brewery_type}></Card4>
                   </Box>
                 </Container>
               </Grid>
             </Grid>
           </Container>
-          </Box>
         </main>
       </section>
     </article>

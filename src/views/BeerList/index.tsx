@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Beer } from '../../types';
 import { fetchData } from './utils';
-import { Grid, TablePagination } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import TableContent from '../../components/Table/TableContent';
 
 const BeerList = () => {
   const navigate = useNavigate();
   const [beerList, setBeerList] = useState<Array<Beer>>([]);
-  const [rowsPerpage, setRowsPerPage] = useState(5);
-  const [page, setPage] = useState(1);
 
   // eslint-disable-next-line
   useEffect(fetchData.bind(this, setBeerList), []);
