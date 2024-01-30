@@ -74,6 +74,7 @@ const TableContent = (props: Props) => {
                 />
                 {
                     sortedRowinformation(props.arrayList, getComparator(props.orderDirection, props.valueToOrderBy))
+                    .slice(page * rowsPerpage, page * rowsPerpage + rowsPerpage)
                     .map((beer, index) => (
                         <TableRow key={index.toString()}>
                             <TableCell>
@@ -87,8 +88,7 @@ const TableContent = (props: Props) => {
                 }
             </Table>
         </TableContainer>
-        <TableFooter>
-            <TablePagination
+        <TablePagination
             rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
             colSpan={3}
             component="div"
@@ -98,7 +98,6 @@ const TableContent = (props: Props) => {
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
             />
-        </TableFooter>
         </Grid>
     );
 }
